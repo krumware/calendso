@@ -7,7 +7,7 @@ on: # yamllint disable-line rule:truthy
   # in case manual trigger is needed
   workflow_dispatch:
     inputs:
-      tags:
+      RELEASE_TAG:
         description: 'v{Major}.{Minor}.{Patch}'  
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
                 workflow_id: 'create-release.yaml',
                 ref: 'main',
                 inputs: {
-                  "RELEASE_TAG": process.env.RELEASE_TAG
+                  "RELEASE_TAG": ${{ inputs.RELEASE_TAG }}
                 },
               });
 
